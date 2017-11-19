@@ -7623,7 +7623,7 @@ function defineOptions(CodeMirror) {
   option("specialCharPlaceholder", defaultSpecialCharPlaceholder, function (cm) { return cm.refresh(); }, true)
   option("electricChars", true)
   option("inputStyle", mobile ? "contenteditable" : "textarea", function () {
-    throw new Error("inputStyle can not (yet) be changed in a running editor") // FIXME
+    throw new Error("inputStyle can not (yet) be changed in a running editor")
   }, true)
   option("spellcheck", false, function (cm, val) { return cm.getInputField().spellcheck = val; }, true)
   option("rtlMoveVisually", !windows)
@@ -9135,7 +9135,7 @@ function locateNodeInLineView(lineView, node, offset) {
   var found = find(textNode, topNode, offset)
   if (found) { return badPos(found, bad) }
 
-  // FIXME this is all really shaky. might handle the few cases it needs to handle, but likely to cause problems
+
   for (var after = topNode.nextSibling, dist = textNode ? textNode.nodeValue.length - offset : 0; after; after = after.nextSibling) {
     found = find(after, after.firstChild, 0)
     if (found)

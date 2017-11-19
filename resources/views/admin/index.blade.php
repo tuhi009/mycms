@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="{{asset('css/app.css')}}" rel="stylesheet">
-    <script src="{{asset('js/app.js')}}"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="{{asset('css/admin-sidebar.css')}}" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -20,6 +20,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-4 col-lg-2">
+
             {{--NAV BAR--}}
             <nav class="navbar navbar-default sidebar" role="navigation">
                 <div class="container-fluid">
@@ -51,7 +52,7 @@
                                     <li><a href="#">Informes</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Libros<span style="font-size:16px;"
+                            <li><a href="/admin/editor/show">Welcome Page<span style="font-size:16px;"
                                                         class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
                             </li>
                             <li><a href="#">Tags<span style="font-size:16px;"
@@ -65,8 +66,14 @@
 
         </div>
         <div class="col-sm-9 col-md-8 col-lg-10 well" style="min-height: 500px">
-            <textarea id="editor" name="editor" style="display: none;"></textarea>
 
+            <form action="{{ action('EditorController@store') }}" method="post">
+                <div class="form-group">
+            <textarea class="form-control" id="editor" name="editor" style="display: none;"></textarea>
+                </div>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
 
         </div>
 

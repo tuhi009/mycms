@@ -21,13 +21,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin','AdminController@index')->name('admin');
 
+//Route::resource('editor','EditorController');
 
+Route::post('/admin/editor','EditorController@store')->name('editor.store');
 
+Route::get('/admin/editor/create','EditorController@create')->name('editor.create');
+Route::get('/admin/editor/show','EditorController@show')->name('editor.show');
 
-
-
-
-/************************************************************************************************************/
 
 Auth::routes();
 
