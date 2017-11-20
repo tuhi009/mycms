@@ -29,6 +29,7 @@ Route::get('/admin/editor/create','EditorController@create')->name('editor.creat
 Route::get('/admin/editor/show','EditorController@show')->name('editor.show');
 
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

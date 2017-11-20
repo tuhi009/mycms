@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use function GuzzleHttp\Psr7\str;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
 
 class EditorController extends Controller
@@ -50,21 +51,26 @@ class EditorController extends Controller
     {
 
         $old = '/resources/views/welcome.blade.php';
-        $new = '/storage/app/public/temp/welcome.blade.php';
+        $new = '/storage/app/public/temp/welcome.txt';
 
 
-        if (Storage::disk('local')->exists('/storage/app/public/temp/welcome.blade.php')) {
-            Storage::disk('local')->delete('/storage/app/public/temp/welcome.blade.php');
+        if (Storage::disk('local')->exists($new)) {
+            Storage::disk('local')->delete($new);
         }
 
         if (!Storage::disk('local')->copy($old, $new)) {
             die("Couldn't copy file");
         }
 
+        if (Storage::disk('local')->exists($new)) {
+            $contents = Storage::disk('local')->get($new);
+
+        }
 
 
-        return 124324;
-
+        return view('editor.welcome_editor')->with('contents',$contents);
+        //return View::make('editor.welcome_editor', compact('contents'));
+        //return $contents;
 
     }
 
