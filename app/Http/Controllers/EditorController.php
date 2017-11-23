@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use function GuzzleHttp\Psr7\str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -38,7 +40,12 @@ class EditorController extends Controller
     public function store(Request $request)
     {
 
-        return 1234;
+
+        $contents = $request->input('editor');
+
+        Storage::disk('local')->put('/resources/views/welcome.blade.php',$contents);
+
+        return view('admin.index');
     }
 
     /**
@@ -69,8 +76,7 @@ class EditorController extends Controller
 
 
         return view('editor.welcome_editor')->with('contents',$contents);
-        //return View::make('editor.welcome_editor', compact('contents'));
-        //return $contents;
+
 
     }
 
