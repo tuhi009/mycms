@@ -9,8 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
 
+
 class EditorController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,9 +50,9 @@ class EditorController extends Controller
 
         $contents = $request->input('editor');
 
-        Storage::disk('local')->put('/resources/views/welcome.blade.php',$contents);
+        Storage::disk('local')->put('/resources/views/welcome.blade.php', $contents);
 
-        return view('admin.index');
+        return redirect('/admin')->with('success', 'Page edited');
     }
 
     /**
@@ -72,10 +79,11 @@ class EditorController extends Controller
         if (Storage::disk('local')->exists($new)) {
             $contents = Storage::disk('local')->get($new);
 
+
         }
 
 
-        return view('editor.welcome_editor')->with('contents',$contents);
+        return view('editor.welcome_editor')->with('contents', $contents);
 
 
     }

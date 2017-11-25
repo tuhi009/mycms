@@ -37,7 +37,9 @@
 <body>
 <div id="app">
     @include('inc.navbar')
-    <div>
+    <div class="container">
+
+        @include('inc.messeges')
         @yield('content')
     </div>
 </div>
